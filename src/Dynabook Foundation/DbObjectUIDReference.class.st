@@ -41,7 +41,7 @@ DbObjectUIDReference >> collectionGetter [
 { #category : #accessing }
 DbObjectUIDReference >> collectionGetter: aSymbol [
 
-	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord'.
+	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord (https://discord.com/channels/729445214812504107/755319168504692778/935560966513504296)'.
 	collectionGetter := aSymbol asSymbol
 ]
 
@@ -126,7 +126,7 @@ DbObjectUIDReference >> sourceGetter [
 { #category : #accessing }
 DbObjectUIDReference >> sourceGetter: anObject [
 
-	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord'.
+	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord (https://discord.com/channels/729445214812504107/755319168504692778/935560966513504296)'.
 	sourceGetter := anObject asSymbol
 ]
 
