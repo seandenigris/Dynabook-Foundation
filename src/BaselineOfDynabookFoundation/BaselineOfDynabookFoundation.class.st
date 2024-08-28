@@ -10,8 +10,8 @@ BaselineOfDynabookFoundation >> baseline: spec [
 	
 	^ spec for: #common do: [
 		spec
-			baseline: 'Magritte' with: [
+			baseline: #'Magritte' with: [
 				spec repository: 'github://seandenigris/Magritte' ].
-		spec package: 'Dynabook Foundation' with: [
-			spec requires: #('Magritte') ] ]
+		spec package: #'Dynabook Foundation' with: [
+			spec requires: #(Magritte) ] ]
 ]
