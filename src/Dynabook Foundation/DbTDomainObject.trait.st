@@ -43,5 +43,5 @@ DbTDomainObject >> uuid: aUUID [
 
 	self 
 		propertyAt: #uuid
-		put: aUUID
+		putRemovingNil: aUUID
 ]
