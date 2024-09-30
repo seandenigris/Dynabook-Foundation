@@ -6,6 +6,12 @@ Trait {
 }
 
 { #category : #acccessing }
+DbTDomainObject >> clipOlAnnotation [
+
+	 ^ Clipboard clipboardText: '{{olObject:uid=', self ensureUUID asString36, '}}'
+]
+
+{ #category : #acccessing }
 DbTDomainObject >> clipUUID [
 
 	 ^ Clipboard clipboardText: self ensureUUID asString36
@@ -15,13 +21,39 @@ DbTDomainObject >> clipUUID [
 DbTDomainObject >> clipUUIDDescription [
 	<magritteActionDescription>
 	
-	^ MAActionDescription new
+	| result |
+	result := MAActionDescription new
 		action: #clipUUID;
 		gtIcon: [ 
 			BaselineOfObjectiveLepiter loadGtIconFromRepositoryPath:'icons/noun-identification-4239883.png' ];
 		isLabelVisible: false;
 		comment: 'Copy UUID string36 to clipboard';
-		yourself
+		yourself.
+		
+	result gtAction: [ :anAction :anObject |
+		anAction explicit
+		priority: 70;
+		stencil: [ | button |
+			button := BrButton new
+					aptitude: BrGlamorousButtonWithIconAptitude;
+					"label: 'Browse class for current object';"
+					icon: (BaselineOfObjectiveLepiter loadGtIconFromRepositoryPath:'icons/noun-identification-4239883.png');
+					action: [ :aButton :aModel :anEvent | 
+						anObject clipUUID ].
+			button viewModel
+				when: BlClickEvent
+				do: [ :anEvent | anEvent modifiers isPrimaryModifier ifTrue: [ anObject clipOlAnnotation ] ].
+			"button viewModel
+				when: BlMouseEnterEvent
+				do: [ :anEvent | 
+					anEvent consumed: true.
+					anEvent modifiers isPrimaryModifier
+						ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
+						ifFalse: [ anEvent target mouseCursor: nil ].
+					anEvent target requestFocus ]."
+			button ] ].
+		
+	^ result
 ]
 
 { #category : #uuid }
