@@ -64,6 +64,15 @@ DbTDomainObject >> ensureUUID [
 	 	ifAbsentPut: [ UUIDGenerator next ]
 ]
 
+{ #category : #'as yet unclassified' }
+DbTDomainObject >> postCopyDbDomainObject [
+	"Send after super postCopy"
+	
+	self uuid: nil; ensureUUID.
+	self lepiterPageID: nil.
+	self supportMaterials: nil.
+]
+
 { #category : #uuid }
 DbTDomainObject >> uuid [
 	
