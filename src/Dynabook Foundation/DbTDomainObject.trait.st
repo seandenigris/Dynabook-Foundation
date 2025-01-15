@@ -68,6 +68,7 @@ DbTDomainObject >> ensureUUID [
 DbTDomainObject >> postCopyDbDomainObject [
 	"Send after super postCopy"
 	
+	self postCopyProperties.
 	self uuid: nil; ensureUUID.
 	self lepiterPageID: nil.
 	self supportMaterials: nil.
