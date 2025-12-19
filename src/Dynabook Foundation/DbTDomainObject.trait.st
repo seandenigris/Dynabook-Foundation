@@ -1,23 +1,25 @@
 Trait {
-	#name : #DbTDomainObject,
+	#name : 'DbTDomainObject',
 	#traits : 'MATPropertyOwner',
 	#classTraits : 'MATPropertyOwner classTrait',
-	#category : #'Dynabook Foundation-Core'
+	#category : 'Dynabook Foundation-Core',
+	#package : 'Dynabook Foundation',
+	#tag : 'Core'
 }
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 DbTDomainObject >> clipOlAnnotation [
 
 	 ^ Clipboard clipboardText: '{{olObject:uid=', self ensureUUID asString36, '}}'
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 DbTDomainObject >> clipUUID [
 
 	 ^ Clipboard clipboardText: self ensureUUID asString36
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 DbTDomainObject >> clipUUIDDescription [
 	<magritteActionDescription>
 	
@@ -56,15 +58,14 @@ DbTDomainObject >> clipUUIDDescription [
 	^ result
 ]
 
-{ #category : #uuid }
+{ #category : 'uuid' }
 DbTDomainObject >> ensureUUID [
 	"See #uuid comment"
-	 ^ self 
-	 	propertyAt: #uuid
-	 	ifAbsentPut: [ UUIDGenerator next ]
+
+	^ self propertyAt: #uuid ifAbsentPut: [ UUID new ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 DbTDomainObject >> postCopyDbDomainObject [
 	"Send after super postCopy"
 	
@@ -74,13 +75,13 @@ DbTDomainObject >> postCopyDbDomainObject [
 	self supportMaterials: nil.
 ]
 
-{ #category : #uuid }
+{ #category : 'uuid' }
 DbTDomainObject >> uuid [
 	
 	 ^ self propertyAt: #uuid ifAbsent: [ nil ]
 ]
 
-{ #category : #uuid }
+{ #category : 'uuid' }
 DbTDomainObject >> uuid: aUUID [
 
 	self 

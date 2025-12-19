@@ -11,37 +11,38 @@
 My client.
 "
 Class {
-	#name : #DbAbstractObjectUIDReference,
-	#superclass : #Object,
+	#name : 'DbAbstractObjectUIDReference',
+	#superclass : 'Object',
 	#instVars : [
 		'uid'
 	],
-	#category : #'Dynabook Foundation'
+	#category : 'Dynabook Foundation',
+	#package : 'Dynabook Foundation'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbAbstractObjectUIDReference >> = rhs [
 	self species = rhs species ifFalse: [ ^ false ].
 	^ self uid = rhs uid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbAbstractObjectUIDReference >> hash [
 	^ self uid hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbAbstractObjectUIDReference >> object [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbAbstractObjectUIDReference >> uid [
 
 	^ uid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbAbstractObjectUIDReference >> uid: anObject [
 
 	uid := anObject

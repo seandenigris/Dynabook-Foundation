@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*Dynabook Foundation' }
+{ #category : '*Dynabook Foundation' }
 String >> dbAsDate [
 
 	^ self asDate translateToUTC

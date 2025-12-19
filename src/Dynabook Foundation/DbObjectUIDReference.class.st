@@ -1,15 +1,16 @@
 Class {
-	#name : #DbObjectUIDReference,
-	#superclass : #DbAbstractObjectUIDReference,
+	#name : 'DbObjectUIDReference',
+	#superclass : 'DbAbstractObjectUIDReference',
 	#instVars : [
 		'collectionGetter',
 		'sourceClassName',
 		'sourceGetter'
 	],
-	#category : #'Dynabook Foundation'
+	#category : 'Dynabook Foundation',
+	#package : 'Dynabook Foundation'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> = rhs [
 
 	super = rhs ifFalse: [ ^ false ].
@@ -25,12 +26,12 @@ DbObjectUIDReference >> = rhs [
 	^ true.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> collection [
 	^ self source perform: self collectionGetter.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> collectionGetter [
 
 	^ collectionGetter ifNil: [ self source dbCollectionAccessor ]
@@ -38,14 +39,14 @@ DbObjectUIDReference >> collectionGetter [
 	"Implementation note: the reason for the inst var is that some sources have multiple collections of interest e.g. LlLibrary has works and copies, so dbCollectionAccessor would indicate the default collection, and you could set the inst var to access others"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> collectionGetter: aSymbol [
 
 	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord (https://discord.com/channels/729445214812504107/755319168504692778/935560966513504296)'.
 	collectionGetter := aSymbol asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> detectUID: anObject ifNone: noneBlock [
 	"anObject - must understand olDetectUIDBlock. See implementors"
 	
@@ -54,7 +55,7 @@ DbObjectUIDReference >> detectUID: anObject ifNone: noneBlock [
 		ifNone: noneBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> displayStringOn: aStream [
 
 	self sourceClassName ifNotNil: [ :clsName | 
@@ -69,13 +70,13 @@ DbObjectUIDReference >> displayStringOn: aStream [
 		aStream nextPutAll: aSel ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> hash [
 
 	^ ((super hash bitXor: self collectionGetter hash) bitXor: self sourceClassName hash) bitXor: self sourceGetter hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> object [
 
 	^ self 
@@ -83,54 +84,54 @@ DbObjectUIDReference >> object [
 		ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> printOn: aStream [
 
 	self printFromDisplayStringOn: aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> source [
 
 	^ self sourceClass perform: self sourceGetter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceClass [
 
 	^ sourceClassName asClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceClass: aClass [
 	sourceClassName := aClass name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceClassName [
 
 	^ sourceClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceClassName: aSymbol [
 	sourceClassName := aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceGetter [
 
 	^ sourceGetter ifNil: [ #uniqueInstance ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> sourceGetter: anObject [
 
 	self flag: '#asSymbol is workaround Lepiter materializing symbols as strings, pending answer on GT Discord (https://discord.com/channels/729445214812504107/755319168504692778/935560966513504296)'.
 	sourceGetter := anObject asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DbObjectUIDReference >> wrappedUidDetector: aBlock [
 
 	^ [ :e |
