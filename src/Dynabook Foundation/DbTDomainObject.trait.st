@@ -33,27 +33,16 @@ DbTDomainObject >> clipUUIDDescription [
 		yourself.
 		
 	result gtAction: [ :anAction :anObject |
-		anAction explicit
-		priority: 70;
-		stencil: [ | button |
-			button := BrButton new
-					aptitude: BrGlamorousButtonWithIconAptitude;
-					"label: 'Browse class for current object';"
-					icon: (BaselineOfObjectiveLepiter loadGtIconFromRepositoryPath:'icons/noun-identification-4239883.png');
-					action: [ :aButton :aModel :anEvent | 
-						anObject clipUUID ].
-			button viewModel
-				when: BlClickEvent
-				do: [ :anEvent | anEvent modifiers isPrimaryModifier ifTrue: [ anObject clipOlAnnotation ] ].
-			"button viewModel
-				when: BlMouseEnterEvent
-				do: [ :anEvent | 
-					anEvent consumed: true.
-					anEvent modifiers isPrimaryModifier
-						ifTrue: [ anEvent target mouseCursor: BlCopyCursor new ]
-						ifFalse: [ anEvent target mouseCursor: nil ].
-					anEvent target requestFocus ]."
-			button ] ].
+		anAction dropdown
+			priority: 70;
+			icon: (BaselineOfObjectiveLepiter loadGtIconFromRepositoryPath:'icons/noun-identification-4239883.png');
+			withDropdownIndicator;
+			items:[ :a :b :aMenuItems |
+				aMenuItems 
+					addItemLabel: 'Clip string36' 
+						action: [ anObject clipUUID ];
+					addItemLabel: 'Clip OlAnnotation' 
+						action: [ anObject clipOlAnnotation ] ] ].
 		
 	^ result
 ]
