@@ -8,19 +8,7 @@ Trait {
 }
 
 { #category : 'acccessing' }
-DbTDomainObject >> clipOlAnnotation [
-
-	 ^ Clipboard clipboardText: '{{olObject:uid=', self ensureUUID asString36, '}}'
-]
-
-{ #category : 'acccessing' }
-DbTDomainObject >> clipUUID [
-
-	 ^ Clipboard clipboardText: self ensureUUID asString36
-]
-
-{ #category : 'acccessing' }
-DbTDomainObject >> clipUUIDDescription [
+DbTDomainObject >> clipDescription [
 	<magritteActionDescription>
 	
 	| result |
@@ -39,12 +27,32 @@ DbTDomainObject >> clipUUIDDescription [
 			withDropdownIndicator;
 			items:[ :a :b :aMenuItems |
 				aMenuItems 
-					addItemLabel: 'Clip string36' 
-						action: [ anObject clipUUID ];
 					addItemLabel: 'Clip OlAnnotation' 
-						action: [ anObject clipOlAnnotation ] ] ].
+						action: [ anObject clipOlAnnotation ];
+					addItemLabel: 'Clip Soup Detection' 
+						action: [ anObject clipSoupDetection ];
+					addItemLabel: 'Clip string36' 
+						action: [ anObject clipUUID ] ] ].
 		
 	^ result
+]
+
+{ #category : 'acccessing' }
+DbTDomainObject >> clipOlAnnotation [
+
+	 ^ Clipboard clipboardText: '{{olObject:uid=', self ensureUUID asString36, '}}'
+]
+
+{ #category : 'acccessing' }
+DbTDomainObject >> clipSoupDetection [
+
+	 ^ Clipboard clipboardText: 'DbSoup detectUID: ', self ensureUUID asString36 printString
+]
+
+{ #category : 'acccessing' }
+DbTDomainObject >> clipUUID [
+
+	 ^ Clipboard clipboardText: self ensureUUID asString36
 ]
 
 { #category : 'uuid' }
