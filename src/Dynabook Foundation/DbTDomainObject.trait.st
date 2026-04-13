@@ -40,7 +40,7 @@ DbTDomainObject >> clipDescription [
 { #category : 'acccessing' }
 DbTDomainObject >> clipOlAnnotation [
 
-	 ^ Clipboard clipboardText: '{{olObject:uid=', self ensureUUID asString36, '}}'
+	 ^ Clipboard clipboardText: self olAnnotation
 ]
 
 { #category : 'acccessing' }
@@ -60,6 +60,12 @@ DbTDomainObject >> ensureUUID [
 	"See #uuid comment"
 
 	^ self propertyAt: #uuid ifAbsentPut: [ UUID new ]
+]
+
+{ #category : 'acccessing' }
+DbTDomainObject >> olAnnotation [
+
+	 ^ '{{olObject:uid=', self ensureUUID asString36, '}}'
 ]
 
 { #category : 'as yet unclassified' }
