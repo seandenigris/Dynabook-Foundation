@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfDynabookFoundation }
+Package { #name : 'BaselineOfDynabookFoundation' }
